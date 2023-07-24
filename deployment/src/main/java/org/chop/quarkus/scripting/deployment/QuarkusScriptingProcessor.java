@@ -21,6 +21,7 @@ import java.net.http.HttpResponse;
 class QuarkusScriptingProcessor {
 
     private static final String FEATURE = "quarkus-scripting";
+    private static final String SCRIPTS_PATH = "/scripts";
 
     @BuildStep
     FeatureBuildItem feature() {
@@ -30,7 +31,7 @@ class QuarkusScriptingProcessor {
     @BuildStep
     ServletBuildItem createServlet() {
         return ServletBuildItem.builder("greeting-extension", ScriptHttpServlet.class.getName())
-            .addMapping("/script/*")
+            .addMapping(SCRIPTS_PATH + "/*")
             .build();
     }
 
@@ -41,7 +42,7 @@ class QuarkusScriptingProcessor {
         String httpHost = config.getOptionalValue("quarkus.http.host", String.class).orElse("localhost");
         String httpPort = config.getOptionalValue("quarkus.http.port", String.class).orElse("8080");
 
-        return new ConsoleCommandBuildItem(new RunCommand(httpHost, httpPort));
+        return new ConsoleCommandBuildItem(new RunCommand(httpHost, httpPort, SCRIPTS_PATH));
     }
 
     @CommandDefinition(name = "run", description = "Runs a application defined script", aliases = { "r" })
@@ -50,24 +51,25 @@ class QuarkusScriptingProcessor {
         private String scriptName;
 
         final HttpClient httpClient;
-
         final String httpHost;
-
         final String httpPort;
+        final String scriptsPath;
 
         public RunCommand(
             String httpHost,
-            String httpPort
+            String httpPort,
+            String scriptsPath
         ) {
             this.httpClient = HttpClient.newHttpClient();
             this.httpHost = httpHost;
             this.httpPort = httpPort;
+            this.scriptsPath = scriptsPath;
         }
 
         @Override
         public CommandResult doExecute(CommandInvocation commandInvocation) {
             var request = HttpRequest.newBuilder()
-                .uri(URI.create("http://" + httpHost + ":" + httpPort + "/script/" + scriptName))
+                .uri(URI.create("http://" + httpHost + ":" + httpPort + scriptsPath + "/" + scriptName))
                 .POST(HttpRequest.BodyPublishers.noBody())
                 .build();
 

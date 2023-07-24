@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.chop.quarkus.scripting.test.QuarkusScriptingDevModeTest" time="1.255" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.chop.quarkus.scripting.test.QuarkusScriptingDevModeTest" time="1.254" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="20"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="NL"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/20.0.1/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/emilesteenkamp/Repository/github.com/underpaid/quarkus-scripting/deployment/target/surefire/surefirebooter-20230724113757485_3.jar /Users/emilesteenkamp/Repository/github.com/underpaid/quarkus-scripting/deployment/target/surefire 2023-07-24T11-37-57_205-jvmRun1 surefire-20230724113757485_1tmp surefire_0-20230724113757485_2tmp"/>
+    <property name="sun.java.command" value="/Users/emilesteenkamp/Repository/github.com/underpaid/quarkus-scripting/deployment/target/surefire/surefirebooter-20230724122544467_3.jar /Users/emilesteenkamp/Repository/github.com/underpaid/quarkus-scripting/deployment/target/surefire 2023-07-24T12-25-44_174-jvmRun1 surefire-20230724122544467_1tmp surefire_0-20230724122544467_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="maven.home" value="/opt/homebrew/Cellar/maven/3.9.2/libexec"/>
@@ -40,7 +40,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.nio.channels.DefaultThreadPool.threadFactory" value="io.quarkus.dev.io.NioThreadPoolThreadFactory"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/emilesteenkamp/Repository/github.com/underpaid/quarkus-scripting/deployment/target/surefire/surefirebooter-20230724113757485_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/emilesteenkamp/Repository/github.com/underpaid/quarkus-scripting/deployment/target/surefire/surefirebooter-20230724122544467_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="20.0.1"/>
@@ -71,17 +71,17 @@
     <property name="vertx.disableTCCL" value="true"/>
     <property name="java.vm.version" value="20.0.1"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
-    <property name="io.netty.machineId" value="29:76:61:ee:15:57:51:e9"/>
+    <property name="io.netty.machineId" value="de:96:72:ff:e8:1f:09:04"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="64.0"/>
   </properties>
   <testcase name="writeYourOwnDevModeTest" classname="org.chop.quarkus.scripting.test.QuarkusScriptingDevModeTest" time="1.252">
     <system-out><![CDATA[&amp#27;[94mTests paused&amp#27;[39m
-2023-07-24 11:37:59,315 WARN  [io.qua.boo.BootstrapAppModelFactory] (main) Expected project directory /var/folders/z6/dgs_q5vx7kq7g6mnfnd0f_9h0000gn/T/quarkus-dev-mode-test13555795602410950180 does not match current project directory /Users/emilesteenkamp/Repository/github.com/underpaid/quarkus-scripting/deployment
-2023-07-24 11:38:00,523 INFO  [io.quarkus] (Quarkus Main Thread) quarkus-scripting-deployment 1.0.0-SNAPSHOT on JVM (powered by Quarkus 3.2.2.Final) started in 1.117s. Listening on: http://localhost:8080
-2023-07-24 11:38:00,525 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
-2023-07-24 11:38:00,525 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [cdi, quarkus-scripting, servlet, smallrye-context-propagation, vertx]
-2023-07-24 11:38:00,531 INFO  [io.quarkus] (Quarkus Main Thread) quarkus-scripting-deployment stopped in 0.004s
+2023-07-24 12:25:46,343 WARN  [io.qua.boo.BootstrapAppModelFactory] (main) Expected project directory /var/folders/z6/dgs_q5vx7kq7g6mnfnd0f_9h0000gn/T/quarkus-dev-mode-test14071318439140511190 does not match current project directory /Users/emilesteenkamp/Repository/github.com/underpaid/quarkus-scripting/deployment
+2023-07-24 12:25:47,548 INFO  [io.quarkus] (Quarkus Main Thread) quarkus-scripting-deployment 1.0.0-SNAPSHOT on JVM (powered by Quarkus 3.2.2.Final) started in 1.101s. Listening on: http://localhost:8080
+2023-07-24 12:25:47,549 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2023-07-24 12:25:47,550 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [cdi, quarkus-scripting, servlet, smallrye-context-propagation, vertx]
+2023-07-24 12:25:47,555 INFO  [io.quarkus] (Quarkus Main Thread) quarkus-scripting-deployment stopped in 0.004s
 ]]></system-out>
   </testcase>
 </testsuite>
