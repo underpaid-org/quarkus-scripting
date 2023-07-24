@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.chop.quarkus.scripting.test.QuarkusScriptingTest" time="2.291" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.chop.quarkus.scripting.test.QuarkusScriptingTest" time="1.515" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="20"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="NL"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/20.0.1/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/emilesteenkamp/Repository/github.com/underpaid/quarkus-scripting/deployment/target/surefire/surefirebooter-20230724134825234_3.jar /Users/emilesteenkamp/Repository/github.com/underpaid/quarkus-scripting/deployment/target/surefire 2023-07-24T13-48-24_974-jvmRun1 surefire-20230724134825234_1tmp surefire_0-20230724134825234_2tmp"/>
+    <property name="sun.java.command" value="/Users/emilesteenkamp/Repository/github.com/underpaid/quarkus-scripting/deployment/target/surefire/surefirebooter-20230724170725975_3.jar /Users/emilesteenkamp/Repository/github.com/underpaid/quarkus-scripting/deployment/target/surefire 2023-07-24T17-07-25_299-jvmRun1 surefire-20230724170725975_1tmp surefire_0-20230724170725975_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="maven.home" value="/opt/homebrew/Cellar/maven/3.9.2/libexec"/>
@@ -38,7 +38,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/emilesteenkamp/Repository/github.com/underpaid/quarkus-scripting/deployment/target/surefire/surefirebooter-20230724134825234_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/emilesteenkamp/Repository/github.com/underpaid/quarkus-scripting/deployment/target/surefire/surefirebooter-20230724170725975_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="20.0.1"/>
@@ -69,14 +69,14 @@
     <property name="vertx.disableTCCL" value="true"/>
     <property name="java.vm.version" value="20.0.1"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
-    <property name="io.netty.machineId" value="1f:e1:7f:10:a6:d5:9f:9c"/>
+    <property name="io.netty.machineId" value="59:b0:f1:0c:49:6e:ca:a0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="64.0"/>
   </properties>
-  <testcase name="writeYourOwnUnitTest" classname="org.chop.quarkus.scripting.test.QuarkusScriptingTest" time="0.008">
-    <system-out><![CDATA[2023-07-24 13:48:27,832 INFO  [io.quarkus] (main) quarkus-scripting-deployment 0.0.1 on JVM (powered by Quarkus 3.2.2.Final) started in 0.261s. Listening on: http://localhost:8081
-2023-07-24 13:48:27,833 INFO  [io.quarkus] (main) Profile test activated. 
-2023-07-24 13:48:27,834 INFO  [io.quarkus] (main) Installed features: [cdi, scripting, servlet, smallrye-context-propagation, vertx]
+  <testcase name="writeYourOwnUnitTest" classname="org.chop.quarkus.scripting.test.QuarkusScriptingTest" time="0.009">
+    <system-out><![CDATA[2023-07-24 17:07:27,755 INFO  [io.quarkus] (main) quarkus-scripting-deployment 0.0.1 on JVM (powered by Quarkus 3.2.2.Final) started in 0.289s. Listening on: http://localhost:8081
+2023-07-24 17:07:27,771 INFO  [io.quarkus] (main) Profile test activated. 
+2023-07-24 17:07:27,771 INFO  [io.quarkus] (main) Installed features: [cdi, scripting, servlet, smallrye-context-propagation, vertx]
 ]]></system-out>
   </testcase>
 </testsuite>

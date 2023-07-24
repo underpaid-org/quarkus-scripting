@@ -1,2 +1,3 @@
 org/chop/quarkus/scripting/runtime/ScriptHttpServlet.class
+org/chop/quarkus/scripting/runtime/ScriptHttpServlet$DuplicateScriptException.class
 org/chop/quarkus/scripting/runtime/Script.class

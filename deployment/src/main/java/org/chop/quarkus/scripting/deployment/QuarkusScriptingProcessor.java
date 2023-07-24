@@ -75,24 +75,30 @@ class QuarkusScriptingProcessor {
 
             try {
                 var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-                var messageBuilder = new StringBuilder()
-                    .append("Script completed with response code ")
-                    .append(response.statusCode());
 
-                if (response.body() != null && !response.body().isEmpty()) {
-                    messageBuilder
-                        .append(" and message: ")
-                        .append(response.body());
+                if (response.statusCode() >= 200 && response.statusCode() < 300) {
+                    commandInvocation.getShell().writeln("SUCCESS! Script completed successfully.");
+
+                    return CommandResult.SUCCESS;
+                } else {
+                    var messageBuilder = new StringBuilder()
+                        .append("FAILURE! Script failed.");
+
+                    if (response.body() != null && !response.body().isEmpty()) {
+                        messageBuilder
+                            .append("\n")
+                            .append(response.body());
+                    }
+
+                    commandInvocation.getShell().writeln(messageBuilder.toString());
+
+                    return CommandResult.FAILURE;
                 }
+            } catch (IOException | InterruptedException exception) {
+                commandInvocation.getShell().writeln("FAILURE! Script failed." + "\n" + exception.getMessage());
 
-                commandInvocation
-                    .getShell()
-                    .writeln(messageBuilder.toString());
-            } catch (IOException | InterruptedException e) {
-                throw new RuntimeException(e);
+                return CommandResult.FAILURE;
             }
-
-            return CommandResult.SUCCESS;
         }
     }
 }
