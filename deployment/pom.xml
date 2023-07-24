@@ -12,7 +12,7 @@
   <dependencies>
     <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-arc-deployment</artifactId>
+      <artifactId>quarkus-undertow-deployment</artifactId>
     </dependency>
     <dependency>
       <groupId>org.chop</groupId>

@@ -4,10 +4,12 @@ import io.quarkus.deployment.annotations.BuildStep;
 import io.quarkus.deployment.builditem.ConsoleCommandBuildItem;
 import io.quarkus.deployment.builditem.FeatureBuildItem;
 import io.quarkus.deployment.console.QuarkusCommand;
+import io.quarkus.undertow.deployment.ServletBuildItem;
 import org.aesh.command.CommandDefinition;
 import org.aesh.command.CommandResult;
 import org.aesh.command.invocation.CommandInvocation;
 import org.aesh.command.option.Argument;
+import org.chop.quarkus.scripting.runtime.ScriptHttpServlet;
 import org.eclipse.microprofile.config.ConfigProvider;
 
 import java.io.IOException;
@@ -23,6 +25,13 @@ class QuarkusScriptingProcessor {
     @BuildStep
     FeatureBuildItem feature() {
         return new FeatureBuildItem(FEATURE);
+    }
+
+    @BuildStep
+    ServletBuildItem createServlet() {
+        return ServletBuildItem.builder("greeting-extension", ScriptHttpServlet.class.getName())
+            .addMapping("/script/*")
+            .build();
     }
 
     @BuildStep
