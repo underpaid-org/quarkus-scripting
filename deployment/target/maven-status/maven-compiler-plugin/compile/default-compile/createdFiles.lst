@@ -1,5 +1,6 @@
 org/chop/quarkus/scripting/deployment/QuarkusScriptingProcessor$RunCommand.class
 org/chop/quarkus/scripting/deployment/QuarkusScriptingProcessor$$accessor.class
+org/chop/quarkus/scripting/deployment/QuarkusScriptingProcessor$RunCommand$ScriptNotSpecifiedException.class
 META-INF/quarkus-javadoc.properties
 org/chop/quarkus/scripting/deployment/QuarkusScriptingProcessor.class
 META-INF/quarkus-build-steps.list

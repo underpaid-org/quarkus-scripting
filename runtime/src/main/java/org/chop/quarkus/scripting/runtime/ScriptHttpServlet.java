@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @IfBuildProfile("dev")
@@ -32,9 +33,18 @@ public class ScriptHttpServlet extends HttpServlet {
             return;
         }
 
-        var scriptName = determineScriptName(req.getPathInfo());
+        String scriptName;
 
-        if (!scriptNameToScriptMap.containsKey(determineScriptName(req.getPathInfo()))) {
+        try {
+            scriptName = determineScriptName(req.getPathInfo());
+        } catch (ScriptNotSpecifiedException e) {
+            resp.getWriter().write("Script not specified.");
+            resp.setStatus(400);
+
+            return;
+        }
+
+        if (!scriptNameToScriptMap.containsKey(scriptName)) {
             resp.getWriter().write("Script not found: " + scriptName);
             resp.setStatus(404);
 
@@ -44,7 +54,7 @@ public class ScriptHttpServlet extends HttpServlet {
         try {
             var script = scriptNameToScriptMap.get(scriptName);
 
-            script.run();
+            script.run(determineScriptArgumentList(req.getPathInfo()));
         } catch (Exception exception) {
             resp.getWriter().write("Script failed: " + scriptName + "\n" + getFilteredStackTrace(exception));
             resp.setStatus(500);
@@ -55,12 +65,24 @@ public class ScriptHttpServlet extends HttpServlet {
         resp.setStatus(200);
     }
 
-    private String determineScriptName(String path) {
+    private String determineScriptName(String path) throws ScriptNotSpecifiedException {
         if (path == null) {
-            return null;
+            throw new ScriptNotSpecifiedException();
         }
 
-        return path.substring(1);
+        var splitPath = path.split("/");
+
+        if (splitPath.length < 2) {
+            throw new ScriptNotSpecifiedException();
+        }
+
+        return splitPath[1];
+    }
+
+    private List<String> determineScriptArgumentList(String path) {
+        var splitPath = path.split("/");
+
+        return Arrays.asList(splitPath).subList(1, splitPath.length);
     }
 
     private Map<String, Script> collectScriptNameToScriptMap() throws DuplicateScriptException {
@@ -92,15 +114,21 @@ public class ScriptHttpServlet extends HttpServlet {
                     stackTraceElement.getClassName().startsWith("org.lucra")
             )
             .toArray(StackTraceElement[]::new);
-        var filteredCauseStackTrace = Arrays.stream(exception.getCause().getStackTrace())
-            .filter(
-                stackTraceElement -> stackTraceElement.getClassName().startsWith("org.chop") ||
-                    stackTraceElement.getClassName().startsWith("org.lucra")
-            )
-            .toArray(StackTraceElement[]::new);
 
         exception.setStackTrace(filteredStackTrace);
-        exception.getCause().setStackTrace(filteredCauseStackTrace);
+
+        if (exception.getCause() != null) {
+            var cause = exception.getCause();
+            var filteredCauseStackTrace = Arrays.stream(cause.getStackTrace())
+                .filter(
+                    stackTraceElement -> stackTraceElement.getClassName().startsWith("org.chop") ||
+                        stackTraceElement.getClassName().startsWith("org.lucra")
+                )
+                .toArray(StackTraceElement[]::new);
+
+            cause.setStackTrace(filteredCauseStackTrace);
+        }
+
         exception.printStackTrace(printWriter);
 
         return stringWriter.toString();
@@ -118,6 +146,12 @@ public class ScriptHttpServlet extends HttpServlet {
 
             this.script1 = script1;
             this.script2 = script2;
+        }
+    }
+
+    private static class ScriptNotSpecifiedException extends Exception {
+        ScriptNotSpecifiedException() {
+            super("Script not specified.");
         }
     }
 }

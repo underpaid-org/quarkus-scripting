@@ -8,7 +8,7 @@ import io.quarkus.undertow.deployment.ServletBuildItem;
 import org.aesh.command.CommandDefinition;
 import org.aesh.command.CommandResult;
 import org.aesh.command.invocation.CommandInvocation;
-import org.aesh.command.option.Argument;
+import org.aesh.command.option.Arguments;
 import org.chop.quarkus.scripting.runtime.ScriptHttpServlet;
 import org.eclipse.microprofile.config.ConfigProvider;
 
@@ -17,6 +17,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 class QuarkusScriptingProcessor {
 
@@ -47,8 +48,8 @@ class QuarkusScriptingProcessor {
 
     @CommandDefinition(name = "run", description = "Runs a application defined script", aliases = { "r" })
     public static class RunCommand extends QuarkusCommand {
-        @Argument(required = true, description = "The script name")
-        private String scriptName;
+        @Arguments(required = true, description = "Script name and arguments")
+        private List<String> arguments;
 
         final HttpClient httpClient;
         final String httpHost;
@@ -68,12 +69,11 @@ class QuarkusScriptingProcessor {
 
         @Override
         public CommandResult doExecute(CommandInvocation commandInvocation) {
-            var request = HttpRequest.newBuilder()
-                .uri(URI.create("http://" + httpHost + ":" + httpPort + scriptsPath + "/" + scriptName))
-                .POST(HttpRequest.BodyPublishers.noBody())
-                .build();
-
             try {
+                var request = HttpRequest.newBuilder()
+                    .uri(buildUri())
+                    .POST(HttpRequest.BodyPublishers.noBody())
+                    .build();
                 var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
                 if (response.statusCode() >= 200 && response.statusCode() < 300) {
@@ -98,6 +98,26 @@ class QuarkusScriptingProcessor {
                 commandInvocation.getShell().writeln("FAILURE! Script failed." + "\n" + exception.getMessage());
 
                 return CommandResult.FAILURE;
+            } catch (ScriptNotSpecifiedException e) {
+                commandInvocation.getShell().writeln("FAILURE! Script failed." + "\n" + "Script not specified.");
+
+                return CommandResult.FAILURE;
+            }
+        }
+
+        private URI buildUri() throws ScriptNotSpecifiedException {
+            if (arguments.size() < 1) {
+                throw new ScriptNotSpecifiedException();
+            }
+
+            var scriptName = arguments.get(0);
+
+            return URI.create("http://" + httpHost + ":" + httpPort + scriptsPath + "/" + scriptName + "/" + String.join("/", arguments.subList(1, arguments.size())));
+        }
+
+        private static class ScriptNotSpecifiedException extends Exception {
+            public ScriptNotSpecifiedException() {
+                super("Script not specified.");
             }
         }
     }
