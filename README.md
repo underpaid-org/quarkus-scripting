@@ -15,14 +15,14 @@ Then to define a script, add a script bean to your application:
 ```kotlin
 @ApplicationScoped
 @Unremovable
-class HelloWorldScript : Script() {
-    override fun run() {
-        Log.info("Hello World!")
-    }
+class HelloScript : Script {
+   override fun run(argumentList: MutableList<String>) {
+      Log.info("Hello ${argumentList.first()}!")
+   }
 
-    override fun getName(): String {
-        return "hello"
-    }
+   override fun getName(): String {
+      return "hello"
+   }
 }
 ```
 
@@ -33,6 +33,6 @@ This will expose the script on the http endpoint `POST /scripts/hello`.
 To run the script you will need to run your quarkus application in dev mode.
 
 There are 2 ways to run the script
-1. You can call the http endpoint `POST /scripts/{script-name}`.
+1. You can call the http endpoint `POST /scripts/{script-name}/{argument}..`.
 2. Or you can use the quarkus dev mode interactive terminal. When starting dev mode, type `:`, then you can run the
-   script by running the command `run {script-name}`.
+   script by running the command `run {script-name} {argument}..`.

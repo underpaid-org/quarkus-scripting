@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.chop</groupId>
     <artifactId>quarkus-scripting-parent</artifactId>
-    <version>0.0.2</version>
+    <version>1.0.0</version>
   </parent>
   <artifactId>quarkus-scripting-integration-tests</artifactId>
   <name>Quarkus Scripting - Integration Tests</name>
