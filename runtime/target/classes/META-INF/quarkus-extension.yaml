@@ -1,0 +1,9 @@
+---
+name: "Quarkus Scripting"
+metadata:
+  built-with-quarkus-core: "3.2.2.Final"
+  minimum-java-version: "11"
+  extension-dependencies:
+  - "io.quarkus:quarkus-arc"
+  - "io.quarkus:quarkus-core"
+artifact: "org.chop:quarkus-scripting::jar:1.0.0-SNAPSHOT"

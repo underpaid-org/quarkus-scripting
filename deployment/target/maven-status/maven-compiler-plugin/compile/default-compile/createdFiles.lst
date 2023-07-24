@@ -1,0 +1,5 @@
+org/chop/quarkus/scripting/deployment/QuarkusScriptingProcessor$RunCommand.class
+org/chop/quarkus/scripting/deployment/QuarkusScriptingProcessor$$accessor.class
+META-INF/quarkus-javadoc.properties
+org/chop/quarkus/scripting/deployment/QuarkusScriptingProcessor.class
+META-INF/quarkus-build-steps.list
