@@ -12,4 +12,4 @@ metadata:
   - "io.quarkus:quarkus-smallrye-context-propagation"
   - "io.quarkus:quarkus-vertx"
   - "io.quarkus:quarkus-netty"
-artifact: "org.chop:quarkus-scripting::jar:1.0.0"
+artifact: "org.chop:quarkus-scripting::jar:1.0.1"

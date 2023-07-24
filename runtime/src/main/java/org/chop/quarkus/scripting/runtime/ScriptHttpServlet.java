@@ -82,7 +82,11 @@ public class ScriptHttpServlet extends HttpServlet {
     private List<String> determineScriptArgumentList(String path) {
         var splitPath = path.split("/");
 
-        return Arrays.asList(splitPath).subList(1, splitPath.length);
+        if (splitPath.length < 3) {
+            return List.of();
+        }
+
+        return Arrays.asList(splitPath).subList(2, splitPath.length);
     }
 
     private Map<String, Script> collectScriptNameToScriptMap() throws DuplicateScriptException {

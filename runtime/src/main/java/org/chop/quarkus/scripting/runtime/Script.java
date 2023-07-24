@@ -1,10 +1,11 @@
 package org.chop.quarkus.scripting.runtime;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
-import java.util.Map;
 
 public interface Script {
-    public abstract void run(List<String> argumentList);
+    public abstract void run(@NotNull List<String> argumentList);
 
     public abstract String getName();
 }
