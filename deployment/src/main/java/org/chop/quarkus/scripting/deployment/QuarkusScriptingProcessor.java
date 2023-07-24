@@ -20,7 +20,7 @@ import java.net.http.HttpResponse;
 
 class QuarkusScriptingProcessor {
 
-    private static final String FEATURE = "quarkus-scripting";
+    private static final String FEATURE = "scripting";
     private static final String SCRIPTS_PATH = "/scripts";
 
     @BuildStep
