@@ -31,7 +31,7 @@ class QuarkusScriptingProcessor {
 
     @BuildStep
     ServletBuildItem createServlet() {
-        return ServletBuildItem.builder("greeting-extension", ScriptHttpServlet.class.getName())
+        return ServletBuildItem.builder("scripting-extension", ScriptHttpServlet.class.getName())
             .addMapping(SCRIPTS_PATH + "/*")
             .build();
     }
